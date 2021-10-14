@@ -13,6 +13,8 @@ public class SSLController {
     @GetMapping("check/{host}/{port}")
     public SSLCheck checkSSL(@PathVariable String host, @PathVariable int port){
         SSLCheck check = new SSLCheck();
+        check.setHost(host);
+        check.setPort(port);
 
         long start = System.currentTimeMillis();
         boolean connected = SSLPing.ping(host, port);
