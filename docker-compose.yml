@@ -2,8 +2,10 @@ version: '3.9'
 
 services:
   check-ssl:
-    build: ./docker
-    image: check-ssl
+    image: check-ssl:latest
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
     environment:
       JAVA_TOOL_OPTIONS: ${JAVA_TOOL_OPTIONS:-""}
     ports:
