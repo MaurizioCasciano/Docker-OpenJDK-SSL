@@ -28,4 +28,6 @@ RUN \
 
 COPY target/*.jar /app.jar
 
+ENV JAVA_TOOL_OPTIONS=${JAVA_TOOL_OPTIONS:-""}
+
 CMD java -jar app.jar

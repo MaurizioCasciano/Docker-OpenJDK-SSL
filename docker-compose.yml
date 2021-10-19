@@ -4,5 +4,7 @@ services:
   check-ssl:
     build: ./docker
     image: check-ssl
+    environment:
+      JAVA_TOOL_OPTIONS: ${JAVA_TOOL_OPTIONS:-""}
     ports:
       - ${PORT:-8888}:8888
