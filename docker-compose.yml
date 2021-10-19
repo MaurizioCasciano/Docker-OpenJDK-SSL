@@ -1,0 +1,8 @@
+version: '3.9'
+
+services:
+  check-ssl:
+    build: ./docker
+    image: check-ssl
+    ports:
+      - ${PORT:-8888}:8888
