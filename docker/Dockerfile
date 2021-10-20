@@ -1,7 +1,10 @@
 FROM openjdk:8-jre-alpine
 # echo $JAVA_HOME
 # /usr/lib/jvm/java-1.8-openjdk/jre
-# /usr/lib/jvm/java-1.8-openjdk/jre/lib/security
+# /usr/lib/jvm/java-1.8-openjdk/jre/lib/
+
+RUN \
+    apk --no-cache add wget
 
 # Download Let'sEncrypt Root/Intermediate certificates
 # https://letsencrypt.org/certificates/
