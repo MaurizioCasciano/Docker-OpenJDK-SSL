@@ -4,15 +4,18 @@ import javax.net.ssl.SSLParameters;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import java.io.OutputStream;
+import java.net.Proxy;
+import java.net.Socket;
 
 //https://github.com/dimalinux/SSLPing
 public class SSLPing {
     public static boolean ping(String host, int port) {
+        Proxy proxy = EnvironmentProxy.getProxy();
+        Socket proxySocket = new Socket(proxy);
 
-        try {
-            SSLSocketFactory sslsocketfactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
-            SSLSocket sslsocket = (SSLSocket) sslsocketfactory.createSocket(host, port);
+        SSLSocketFactory sslsocketfactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
 
+        try (SSLSocket sslsocket = (SSLSocket) sslsocketfactory.createSocket(proxySocket, host, port, true)) {
             // Hostname verification is not done by default in Java with raw SSL connections.
             // The next 3 lines enable it.
             SSLParameters sslParams = new SSLParameters();
